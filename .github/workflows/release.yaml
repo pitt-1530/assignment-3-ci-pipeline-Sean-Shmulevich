@@ -2,8 +2,11 @@ name: Release JAR
 
 on:
   push:
-    tags:
-      - "v*"
+    branches:
+      - "main"
+
+permissions:
+  contents: write
 
 jobs:
   build-release:
@@ -22,12 +25,10 @@ jobs:
       - name: Build JAR
         run: mvn -B package
 
-      - name: Create GitHub Release
+      - name: Create GitHub Release and Upload JAR
         uses: softprops/action-gh-release@v2
         with:
+          tag_name: main-${{ github.run_number }}
+          release_name: "Automated Release ${{ github.run_number }}"
           generate_release_notes: true
-
-      - name: Upload JAR artifact
-        uses: softprops/action-gh-release@v2
-        with:
           files: target/*.jar
