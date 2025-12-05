@@ -3,12 +3,15 @@ package edu.pitt.se;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.List;
+
 public class PlaylistRecommenderTest {
 
     @Test
     public void placeholder() {
         assertTrue(true);
     }
+
     @Test
     public void testNormalizeVolumeClamping() {
         // Exact boundary case
@@ -100,7 +103,7 @@ public class PlaylistRecommenderTest {
 
         // --- Mixed values that average just below/above thresholds ---
         assertEquals("MEDIUM", PlaylistRecommender.classifyEnergy(List.of(139, 140))); // avg = 139.5 ⇒ MEDIUM
-        assertEquals("HIGH", PlaylistRecommender.classifyEnergy(List.of(140, 140)));   // avg = 140 ⇒ HIGH
+        assertEquals("HIGH", PlaylistRecommender.classifyEnergy(List.of(140, 140))); // avg = 140 ⇒ HIGH
     }
 
 }
